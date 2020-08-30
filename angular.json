@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,7 +75,8 @@
             "production": {
               "browserTarget": "event-scrapper-front:build:production"
             }
-          }
+          },
+          "proxyConfig": "proxy.conf.json"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -123,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "event-scrapper-front"
+    }
+  },
+  "defaultProject": "event-scrapper-front",
+  "cli": {
+    "analytics": "9800f587-4c7a-426e-886c-570a0be1e8ad"
+  }
 }
