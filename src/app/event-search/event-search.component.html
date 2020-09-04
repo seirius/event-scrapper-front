@@ -2,10 +2,10 @@
     <div class="row">
         <div class="d-sm-node col-sm-2"></div>
         <div class="col-12 col-sm-8">
-            <form>
+            <form (submit)="search($event)">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search"
-                        aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                        aria-describedby="basic-addon2" name="query" [(ngModel)]="query">
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="submit">
                             <fa-icon [icon]="searchIcon"></fa-icon>
@@ -13,6 +13,18 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-4" *ngFor="let event of events">
+            <div class="event">
+                <img [src]="event.img ? event.img : imgPlaceholder" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.title}}</h5>
+                    <p class="card-text">{{event.direction}}</p>
+                    <a [href]="event.url" class="btn btn-primary">Tickets</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
