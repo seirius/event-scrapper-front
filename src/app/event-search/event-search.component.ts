@@ -16,6 +16,10 @@ export class EventSearchComponent implements OnInit {
     public query: string;
     public events: ScrappedEvent[];
 
+    public all = true;
+    public notikumi = false;
+    public wegow = false;
+
     public imgPlaceholder = "assets/image_placeholder.png";
 
     constructor(
@@ -27,7 +31,24 @@ export class EventSearchComponent implements OnInit {
 
     public async search(event: Event): Promise<void> {
         event.preventDefault();
-        this.events = await this.eventSearchService.getScrappedEvents(this.query);
+
+        if ([this.all, this.notikumi, this.wegow].every(checked => !checked)) {
+            alert("Check atleast one criteria for searching (Wegow, Notikumi...)");
+            return;
+        }
+
+        this.events = await this.eventSearchService.getScrappedEvents(this.query, {
+            all: this.all,
+            notikumi: this.notikumi,
+            wegow: this.wegow
+        });
+    }
+
+    public checkedAll(): void {
+        if (this.all) {
+            this.notikumi = false;
+            this.wegow = false;
+        }
     }
 
 }
