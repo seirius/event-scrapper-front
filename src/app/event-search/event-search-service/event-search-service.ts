@@ -13,11 +13,12 @@ export class EventSearchService {
     ) {}
 
     public async getScrappedEvents(query: string, {
-        all, notikumi, wegow
+        all, notikumi, wegow, ticketmaster
     }: {
         all: boolean;
         notikumi?: boolean;
         wegow?: boolean;
+        ticketmaster?: boolean;
     } = { all: true }): Promise<ScrappedEvent[]> {
         let houses = [];
         if (all) {
@@ -28,6 +29,9 @@ export class EventSearchService {
             }
             if (wegow) {
                 houses.push(EventHouse.WEGOW);
+            }
+            if (ticketmaster) {
+                houses.push(EventHouse.TICKETMASTER);
             }
         }
         return this.httpClient

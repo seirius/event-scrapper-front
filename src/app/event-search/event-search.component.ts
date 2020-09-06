@@ -19,6 +19,7 @@ export class EventSearchComponent implements OnInit {
     public all = true;
     public notikumi = false;
     public wegow = false;
+    public ticketmaster = false;
 
     public imgPlaceholder = "assets/image_placeholder.png";
 
@@ -32,7 +33,7 @@ export class EventSearchComponent implements OnInit {
     public async search(event: Event): Promise<void> {
         event.preventDefault();
 
-        if ([this.all, this.notikumi, this.wegow].every(checked => !checked)) {
+        if ([this.all, this.notikumi, this.wegow, this.ticketmaster].every(checked => !checked)) {
             alert("Check atleast one criteria for searching (Wegow, Notikumi...)");
             return;
         }
@@ -40,7 +41,8 @@ export class EventSearchComponent implements OnInit {
         this.events = await this.eventSearchService.getScrappedEvents(this.query, {
             all: this.all,
             notikumi: this.notikumi,
-            wegow: this.wegow
+            wegow: this.wegow,
+            ticketmaster: this.ticketmaster
         });
     }
 
@@ -48,6 +50,7 @@ export class EventSearchComponent implements OnInit {
         if (this.all) {
             this.notikumi = false;
             this.wegow = false;
+            this.ticketmaster = false;
         }
     }
 
